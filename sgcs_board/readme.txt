@@ -1,0 +1,1 @@
+기술 스택 : apache2 + php + mariaDB
