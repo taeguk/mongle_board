@@ -46,7 +46,11 @@ create table like_list (
 	like_id INT not null auto_increment primary key,
 	ul_id INT not null,
 	brd_id INT not null,
-	art_id INT not null
+	art_id INT not null,
+	foreign key(ul_id) references user_list(ul_id) on delete cascade,
+	foreign key(brd_id) references brd_list(brd_id) on delete cascade,
+	foreign key(art_id) references brd_list.brd_tbl_name(art_id) 
+		if brd_list.brd_id = brd_id   on delete cascade # 이런거 불가능한가? ㅠㅠ
 ) engine=InnoDB;
 
 create table free_brd (
