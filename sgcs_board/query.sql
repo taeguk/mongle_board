@@ -44,7 +44,6 @@ create table prm_list (
 	foreign key(brd_id) references brd_list(brd_id) on delete cascade
 ) engine=InnoDB;
 
-
 create table free_brd (
 	art_id INT not null auto_increment primary key,
 	ul_id INT not null,
@@ -63,6 +62,15 @@ create table free_resp_list (
 	foreign key(art_id) references free_brd(art_id) on delete cascade
 ) engine=InnoDB;
 
+create table free_cmt_list (
+	cmt_id not null auto_increment primary key,
+	ul_id INT not null,
+	art_id INT not null,
+	cmt_content TEXT not null,
+	foreign key(ul_id) references user_list(ul_id) on delete cascade,
+	foreign key(art_id) references free_brd(art_id) on delete cascade
+) engine=InnoDB; 
+
 
 create table cnu_study_brd (
 	art_id INT not null auto_increment primary key,
@@ -79,5 +87,14 @@ create table cnu_study_resp_list (
 	art_id INT not null,
 	resp_type ENUM('wow','soso','fuck') not null,
 	foreign key(ul_id) references user_list(ul_id) on delete cascade,
-	foreign key(art_id) references free_brd(art_id) on delete cascade
+	foreign key(art_id) references cnu_study_brd(art_id) on delete cascade
 ) engine=InnoDB;
+
+create table cnu_study_cmt_list (
+	cmt_id not null auto_increment primary key,
+	ul_id INT not null,
+	art_id INT not null,
+	cmt_content TEXT not null,
+	foreign key(ul_id) references user_list(ul_id) on delete cascade,
+	foreign key(art_id) references cnu_study_brd(art_id) on delete cascade
+) engine=InnoDB; 
