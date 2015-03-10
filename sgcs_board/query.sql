@@ -28,8 +28,12 @@ create table admin_list (
 create table brd_list (
 	brd_id INT not null auto_increment primary key,
 	brd_tbl_name VARCHAR(50) not null,
-	brd_real_name VARCHAR(50) not null,
-	brd_article_cnt INT VARCHAR(50) not null,
+	brd_real_name VARCHAR(50) not null
+) engine=InnoDB;
+
+create table like_store_list (
+	ls_id INT not null auto_increment primary key,
+	ls_tbl_name VARCHAR(50) not null
 ) engine=InnoDB;
 
 create table prm_list (
@@ -40,26 +44,40 @@ create table prm_list (
 	foreign key(brd_id) references brd_list(brd_id) on delete cascade
 ) engine=InnoDB;
 
-# 밑에부터 수정할꺼 많음
-
-create table like_list (
-	like_id INT not null auto_increment primary key,
-	ul_id INT not null,
-	brd_id INT not null,
-	art_id INT not null,
-	foreign key(ul_id) references user_list(ul_id) on delete cascade,
-	foreign key(brd_id) references brd_list(brd_id) on delete cascade,
-	foreign key(art_id) references brd_list.brd_tbl_name(art_id) 
-		if brd_list.brd_id = brd_id   on delete cascade # 이런거 불가능한가? ㅠㅠ
-) engine=InnoDB;
 
 create table free_brd (
 	art_id INT not null auto_increment primary key,
 	ul_id INT not null,
 	art_title VARCHAR(100) not null,
 	art_content TEXT not null,
-	art_like_cnt INT not null,
-	art_hate_cnt INT not null,
 	art_hit_cnt INT not null,
 	art_wr_ts TIMESTAMP not null,
+) engine=InnoDB;
+
+create table free_feel_list (
+	feel_id INT not null auto_increment primary key,
+	ul_id INT not null,
+	art_id INT not null,
+	feel_spec ENUM('wow','soso','fuck') not null,
+	foreign key(ul_id) references user_list(ul_id) on delete cascade,
+	foreign key(art_id) references free_brd(art_id) on delete cascade
+) engine=InnoDB;
+
+
+create table cnu_study_brd (
+	art_id INT not null auto_increment primary key,
+	ul_id INT not null,
+	art_title VARCHAR(100) not null,
+	art_content TEXT not null,
+	art_hit_cnt INT not null,
+	art_wr_ts TIMESTAMP not null
+) engine=InnoDB;
+
+create table cnu_study_feel_list (
+	feel_id INT not null auto_increment primary key,
+	ul_id INT not null,
+	art_id INT not null,
+	feel_spec ENUM('wow','soso','fuck') not null,
+	foreign key(ul_id) references user_list(ul_id) on delete cascade,
+	foreign key(art_id) references free_brd(art_id) on delete cascade
 ) engine=InnoDB;
