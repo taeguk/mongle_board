@@ -54,11 +54,11 @@ create table free_brd (
 	art_wr_ts TIMESTAMP not null,
 ) engine=InnoDB;
 
-create table free_feel_list (
+create table free_resp_list (
 	feel_id INT not null auto_increment primary key,
 	ul_id INT not null,
 	art_id INT not null,
-	feel_spec ENUM('wow','soso','fuck') not null,
+	resp_type ENUM('wow','soso','fuck') not null,
 	foreign key(ul_id) references user_list(ul_id) on delete cascade,
 	foreign key(art_id) references free_brd(art_id) on delete cascade
 ) engine=InnoDB;
@@ -73,11 +73,11 @@ create table cnu_study_brd (
 	art_wr_ts TIMESTAMP not null
 ) engine=InnoDB;
 
-create table cnu_study_feel_list (
+create table cnu_study_resp_list (
 	feel_id INT not null auto_increment primary key,
 	ul_id INT not null,
 	art_id INT not null,
-	feel_spec ENUM('wow','soso','fuck') not null,
+	resp_type ENUM('wow','soso','fuck') not null,
 	foreign key(ul_id) references user_list(ul_id) on delete cascade,
 	foreign key(art_id) references free_brd(art_id) on delete cascade
 ) engine=InnoDB;
