@@ -27,13 +27,73 @@ create table admin_list (
 
 create table brd_list (
 	brd_id INT not null auto_increment primary key,
-	brd_tbl_name VARCHAR(50) not null,
-	brd_real_name VARCHAR(50) not null
+	brd_name VARCHAR(50) not null,
+	is_secret BOOLEAN not null
 ) engine=InnoDB;
 
-create table like_store_list (
-	ls_id INT not null auto_increment primary key,
-	ls_tbl_name VARCHAR(50) not null
+create table prm_list (
+	prm_id INT not null auto_increment primary key,
+	ul_id INT not null,
+	brd_id INT not null,
+	foreign key(ul_id) references user_list(ul_id) on delete cascade,
+	foreign key(brd_id) references brd_list(brd_id) on delete cascade
+) engine=InnoDB;
+
+create table art_list (
+	art_id INT not null auto_increment primary key,
+	ul_id INT not null,
+	brd_id INT not null,
+	art_title VARCHAR(100) not null,
+	art_content TEXT not null,
+	art_hit_cnt INT not null,
+	art_wr_ts TIMESTAMP not null,
+	foreign key(ul_id) references user_list(ul_id) on delete cascade,
+	foreign key(brd_id) references brd_list(brd_id) on delete cascade
+) engine=InnoDB;
+
+create table cmt_list (
+	cmt_id not null auto_increment primary key,
+	ul_id INT not null,
+	brd_id INT not null,
+	art_id INT not null,
+	cmt_content TEXT not null,
+	foreign key(ul_id) references user_list(ul_id) on delete cascade,
+	foreign key(brd_id) references brd_list(brd_id) on delete cascade,
+	foreign key(art_id) references art_list(art_id) on delete cascade
+) engine=InnoDB;
+
+create table resp_type_list (
+	
+) engine=InnoDB;
+
+create table resp_list (
+	resp_id INT not null auto_increment primary key,
+	ul_id INT not null,
+	brd_id INT not null,
+	art_id INT not null,
+	resp_type ENUM('wow','soso','fuck') not null,
+	foreign key(ul_id) references user_list(ul_id) on delete cascade,
+	foreign key(brd_id) references brd_list(brd_id) on delete cascade,
+	foreign key(art_id) references art_list(art_id) on delete cascade
+) engine=InnoDB;
+
+
+
+
+
+
+
+
+
+
+######################### 밑에는 쓸모없음. 아까우니까 남겨는 둔다. ##############
+
+/*
+
+create table brd_list (
+	brd_id INT not null auto_increment primary key,
+	brd_tbl_name VARCHAR(50) not null,
+	brd_real_name VARCHAR(50) not null
 ) engine=InnoDB;
 
 create table prm_list (
@@ -98,3 +158,5 @@ create table cnu_study_cmt_list (
 	foreign key(ul_id) references user_list(ul_id) on delete cascade,
 	foreign key(art_id) references cnu_study_brd(art_id) on delete cascade
 ) engine=InnoDB; 
+
+*/
