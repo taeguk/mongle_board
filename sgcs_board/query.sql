@@ -62,16 +62,12 @@ create table cmt_list (
 	foreign key(art_id) references art_list(art_id) on delete cascade
 ) engine=InnoDB;
 
-create table resp_type_list (
-	
-) engine=InnoDB;
-
-create table resp_list (
-	resp_id INT not null auto_increment primary key,
+create table rsp_list (
+	rsp_id INT not null auto_increment primary key,
 	ul_id INT not null,
 	brd_id INT not null,
 	art_id INT not null,
-	resp_type ENUM('wow','soso','fuck') not null,
+	rsp_type ENUM('wow','soso','fuck') not null,
 	foreign key(ul_id) references user_list(ul_id) on delete cascade,
 	foreign key(brd_id) references brd_list(brd_id) on delete cascade,
 	foreign key(art_id) references art_list(art_id) on delete cascade
