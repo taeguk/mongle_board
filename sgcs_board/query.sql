@@ -28,7 +28,9 @@ create table admin_list (
 create table brd_list (
 	brd_id INT not null auto_increment primary key,
 	brd_name VARCHAR(50) not null,
-	is_secret BOOLEAN not null
+	is_secret BOOLEAN not null,
+	brd_pw VARCHAR(40),		# exists when is_secret = true
+	is_hide BOOLEAN not null	# only admin can see if true
 ) engine=InnoDB;
 
 create table prm_list (
