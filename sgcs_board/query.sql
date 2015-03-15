@@ -6,17 +6,21 @@ flush privileges;
 use sgcsbrd;
 
 #테이블 생성
-create table user_list (
-	ul_id INT not null auto_increment primary key,
-	user_id VARCHAR(30) not null,
-	user_pw VARCHAR(40) not null,
-	stdnt_id VARCHAR(20) not null,
-	user_name VARCHAR(40) not null,
-	user_nickname VARCHAR(40) not null,
-	visit_cnt INT not null,
-	login_attempt_ts TIMESTAMP not null,
-	signin_ts TIMESTAMP not null,
-	signup_ts TIMESTAMP not null
+create table `user_list` (
+	`ul_id` INT not null auto_increment primary key,
+	`user_id` VARCHAR(30) not null,
+	`user_pw` CHAR(128) not null,
+	`pw_salt` CHAR(128) not null,
+	`user_name` VARCHAR(40) not null,
+	`user_nickname` VARCHAR(40) not null,
+	`visit_cnt` INT not null,
+	`signin_ts` TIMESTAMP not null,
+	`signup_ts` TIMESTAMP not null
+) engine=InnoDB;
+
+create table `login_attempts` (
+	`ul_id` INT not null,
+	`time` VARCHAR(30) not null
 ) engine=InnoDB;
 
 create table admin_list (
@@ -54,7 +58,7 @@ create table art_list (
 ) engine=InnoDB;
 
 create table cmt_list (
-	cmt_id not null auto_increment primary key,
+	cmt_id INT not null auto_increment primary key,
 	ul_id INT not null,
 	brd_id INT not null,
 	art_id INT not null,
