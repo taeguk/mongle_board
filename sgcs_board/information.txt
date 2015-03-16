@@ -9,3 +9,8 @@ note-editor
 
 https://gist.github.com/kijin/5829736
 http://www.phpschool.com/gnuboard4/bbs/board.php?bo_table=tipntech&wr_id=77221#c_77221
+
+!! consider autoloading
+
+#php autoloading speed article
+http://blog.ircmaxell.com/2012/07/is-autoloading-good-solution.html

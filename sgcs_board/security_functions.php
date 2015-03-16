@@ -1,6 +1,4 @@
 <?php
-require_once('./htmlpurifier-4.6.0/library/HTMLPurifier.auto.php'); 
-
 function esc_url($url) {
 
 	if ('' == $url) {
@@ -34,6 +32,8 @@ function esc_url($url) {
 
 function purify_html ($html)
 {
+	require_once('./htmlpurifier-4.6.0/library/HTMLPurifier.auto.php');
+	
 	// 기본 설정을 불러온 후 적당히 커스터마이징을 해줍니다.
 	$config = HTMLPurifier_Config::createDefault();
 	$config->set('Attr.EnableID', false);
