@@ -4,7 +4,7 @@ require_once 'security_fuctions.php';
 require_once 'user_class.php';
 
 class Session {
-	var $session_name = 'sgcs_board';
+	var $session_name = 'mongle_board';
 	var $login_user;
 	var $login_string;
 	
