@@ -1,1 +1,0 @@
-기술 스택 : apache2 + php + mariadb10

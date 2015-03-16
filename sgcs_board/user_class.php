@@ -1,4 +1,5 @@
 <?php
+require_once 'security_functions.php';
 class User {
 	var $ul_id;
 	var $user_id;
